@@ -1,3 +1,52 @@
-<p>
-  food-list works!
-</p>
+<div class="container">
+  
+  <div class="card">
+  <hr>
+    <div>
+      <label for="contact-name"></label>
+      <input type="text" [(ngModel)]="food.name">
+    </div>
+    <div>
+      <label for="contact-email"></label>
+      <input type="text" [(ngModel)]="food.calories">
+    </div>
+    <div>
+      <label for="contact-phone"></label>
+      <input type="text" [(ngModel)]="food.quantity">
+    </div>
+    <div>
+      <label for="contact-image"></label>
+      <input type="text" [(ngModel)]="food.image">
+    </div>
+    <button (click)="addFood()">Submit</button>
+  
+    <br>
+    <br>
+    <input type="text" [(ngModel)]="searchValue">
+    <button (click)="searchFood()">Search</button>
+<hr>
+  </div>
+
+  <div class="card">
+    <div *ngFor="let todayFood of todayFoods">
+      <h5>Name: {{todayFood.name}} x {{todayFood.quantity}}</h5>
+    </div>
+    <h4>CalorieCount: {{calories}}</h4>
+  </div>
+
+  <div class="card" *ngFor="let food of foods">
+    <!-- <div *ngIf="food.quantity === 1"> -->
+    <hr>
+    <h3>Name: {{food.name}}</h3>
+    <h3>Calories: {{food.calories}}</h3>
+    <h3>Quantity: {{food.quantity}}</h3>
+    <img [src]="food.image" alt="">
+    <button (click)="addToTodayFoods(food)">Add</button>
+    <input type="number" [(ngModel)]="addedQuantity">
+    <hr>
+    <!-- </div> -->
+
+  </div>
+
+
+</div>

@@ -43,7 +43,7 @@
     <!-- <div *ngIf="food.quantity === 1"> -->
 
     <h3>Name: {{foodItem.name}}</h3>
-    <h3>Calories: {{foodItem.calories}}</h3>
+    <h3>Calories: {{foodItem.calories | numberToLetters}}</h3>
     <h3>Quantity: {{foodItem.quantity}}</h3>
     <img [src]="foodItem.image" alt="">
     <br>

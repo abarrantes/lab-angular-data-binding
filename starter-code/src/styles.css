@@ -1,12 +1,14 @@
 .container{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
 .card{
     height:300px;
-    width: 400px;
+    width: 250px;
+    border: 1px solid black;
+
 }
 
 img{

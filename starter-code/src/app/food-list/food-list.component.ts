@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import foodsList from '../foods';
+import foods from '../foods';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,33 +8,41 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./food-list.component.css']
 })
 export class FoodListComponent implements OnInit {
-  foods: Array<any>;
-  food: any = {};
+  foodList: Array<any>;
+  foodItem: any = {};
   searchValue: string = ""
-  todayFoods: Array<any> = [];
+
+  newFoodItem: any = {};
+  formShowing: boolean = false;
+
+  todaysFoods: Array<any> = [];
+  
   addedQuantity: number = 1;
   calories:number = 0;
 
-  searchFood() {
-    console.log("button works");
+  searchFoodItem() {
     console.log(this.searchValue);
-    let searchVal = this.searchValue;
-    this.foods.forEach(function (element) {
-      if (element.name === searchVal) { element.quantity = 1 }
+    this.foodList = foods.filter((oneFood)=>{
+      return oneFood.name.toLowerCase().match(this.searchValue.toLowerCase());
     })
-    console.log("done")
   }
 
-  addFood() {
+  addNewFood() {
     console.log("button works");
-    this.foods.push(this.food);
-    this.food = {};
+    this.foodList.unshift(this.newFoodItem);
+    this.newFoodItem = {};
+    this.toggleForm();
   }
 
-  addToTodayFoods(food) {
-    food.quantity = this.addedQuantity;
-    this.calories += food.calories;
-    this.todayFoods.push(food);
+  toggleForm(){
+    console.log("hi");
+    this.formShowing = !this.formShowing;
+  }
+
+  addToTodaysFoods(foodItem) {
+    foodItem.quantity = this.addedQuantity;
+    this.calories += foodItem.calories;
+    this.todaysFoods.push(foodItem);
     this.addedQuantity = 1;
   }
 
@@ -45,7 +53,7 @@ export class FoodListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.foods = foodsList;
+    this.foodList = foods;
   }
 
 

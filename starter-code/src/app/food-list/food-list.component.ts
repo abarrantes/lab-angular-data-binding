@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import foods from '../foods';
 import { FormsModule } from '@angular/forms';
+import { FoodService } from "../services/food.service";
 
 @Component({
   selector: 'app-food-list',
@@ -11,28 +11,25 @@ export class FoodListComponent implements OnInit {
   foodList: Array<any>;
   foodItem: any = {};
   searchValue: string = ""
-
-  newFoodItem: any = {};
+  
+  
   formShowing: boolean = false;
-
+  
   todaysFoods: Array<any> = [];
   
   addedQuantity: number = 1;
   calories:number = 0;
+  
+  constructor(public myService:FoodService) { }
 
   searchFoodItem() {
     console.log(this.searchValue);
-    this.foodList = foods.filter((oneFood)=>{
+    this.foodList = this.myService.serviceFoodList.filter((oneFood)=>{
       return oneFood.name.toLowerCase().match(this.searchValue.toLowerCase());
     })
   }
 
-  addNewFood() {
-    console.log("button works");
-    this.foodList.unshift(this.newFoodItem);
-    this.newFoodItem = {};
-    this.toggleForm();
-  }
+
 
   toggleForm(){
     console.log("hi");
@@ -50,10 +47,10 @@ export class FoodListComponent implements OnInit {
 
   }
 
-  constructor() { }
 
   ngOnInit() {
-    this.foodList = foods;
+    // this.foodList = foods;
+    this.foodList = this.myService.serviceFoodList;
   }
 
 

@@ -1,0 +1,27 @@
+<div class="card">
+<button (click)="toggleForm()">Form</button>
+<form (submit)="addNewFood()">
+
+  <div>
+    <label>Name</label>
+    <input type="text" name="a" [(ngModel)]="newFoodItem.name">
+  </div>
+  <div>
+    <label>Calories</label>
+    <input type="text" name="a" [(ngModel)]="newFoodItem.calories">
+  </div>
+  <div>
+    <label>Quantity</label>
+    <input type="text" name="a" [(ngModel)]="newFoodItem.quantity">
+  </div>
+  <div>
+    <label>Image</label>
+    <input type="text" name="a" [(ngModel)]="newFoodItem.image">
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+<br>
+<br>
+
+</div>
